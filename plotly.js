@@ -1,27 +1,31 @@
 const geojsonUrl = 'regiones.json';
 const poblacion = 'PoblacionChile.csv';
+const consumo = 'ConsumoEnergeticoChile.csv'
 
 
-// acá cambiando el csv se lee igual, solo debes cambiar el número
-// de row que lees en circleSize y
-fetch('ConsumoEnergeticoChile.csv')
+// Acá se puede leer cualquiera de los dos csv
+// Si se lee poblacion se debe cambiar row[1] a row[7] de columna7 a 7
+// y viceversa si se lee consumo
+fetch(poblacion)
     .then(response => response.text())
     .then(data => {
         const rows = data.split('\n').map(row => row.split(',')); 
 
-        const column0 = rows.slice(1).map(row => row[0]);
-        console.log(column0)
-        const column7 = rows.slice(1).map(row => parseFloat(row[1])); 
-        console.log(column7);
-        // maximo entre los datos para normalizar
-        const max = 76599;
-        const circlesSize = column7.map(row => (row/max) * 50)
-        console.log(circlesSize)
+        const columna0 = rows.slice(1).map(row => row[0]);
+        console.log(columna0)
+        const columna7 = rows.slice(1).map(row => parseFloat(row[7])); 
+        console.log(columna7);
+
+        // Máximo entre los datos para normalizar
+        const max = Math.max(...columna7);
+        const circleSize = columna7.map(row => (row/max) * 50)
+        console.log(circleSize)
 
         // acá esta el layout de puntitos por cada región
         const regiones = [{
             type: 'scattergeo',
             mode: 'markers',
+            // coords de las regiones
             lon: [-70.3080, -70.1524, -70.3954, -70.3322,
                 -71.33947, -71.6197, -70.6483, -71.12452,
                 -71.6655, -73.0630, -71.95, -72.66, 73.2416,
@@ -30,21 +34,23 @@ fetch('ConsumoEnergeticoChile.csv')
                 -29.95332, -33.0461, -33.4569, -34.3719,
                 -35.42694, -36.7727, -36.6166, -38.9, -39.8083,
                 -41.47166, -45.57, -53.1625],
-            text: column0,
+            text: columna0,
             hoverinfo: 'text',
             marker: {
+                // se puede hacer una escala de colores con alguno 
+                // de los dos csv de datos
                 color: ['green', 'green', 'green',
                     'green','green', 'green',
                     'green', 'green', 'green',
                     'green', 'green', 'green',
                     'green','green', 'green',
                     'green'
-                ], // acá podemos hacer una escala de colores
-                size: circlesSize
+                ],
+                size: circleSize // toma el tamaño dado los datos de un csv
                 // size: [10, 20, 10, 10,
                 //     10, 10, 10, 10,
                 //     10, 10, 10, 10,
-                //     10, 10, 10, 10], // podemos escalar el tamaño acá
+                //     10, 10, 10, 10],
             }
         }];
 
@@ -83,6 +89,3 @@ fetch('ConsumoEnergeticoChile.csv')
             });
 
     });
-
-
-
