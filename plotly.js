@@ -53,7 +53,7 @@ fetch(consumo_relativo)
 
         // acá esta el layout para que se centre el mapa en Chile
         const layout = {
-            title: { text: 'Consumo de energía por cada región en Chile (2020)', x: 0.5, },
+            title: { text: 'Consumo de energía por región en Chile (2020)', x: 0.5, },
             geo: {
                 scope: 'chile',
                 resolution: 50, // cambiando esto los bordes están mejor o peor definidos
@@ -76,18 +76,20 @@ fetch(consumo_relativo)
         fetch(geojsonUrl)
             .then(response => response.json())
             .then(geojson => {
+
                 const geoData = {
                     type: 'choropleth', // si se saca esto se muestran los ejes de latitudes y longitudes
                     geojson: geojson,
                     locations: nombres_regiones,
                     z: consumo_regiones,
                     featureidkey: 'properties.Region',
-                    text: nombres_regiones, // Agregar esto para mostrar el nombre completo en el hover
-                    hoverinfo: 'text+z',
+                    //text: nombres_regiones, // Agregar esto para mostrar el nombre completo en el hover
+                    //hoverinfo: 'text+z',
                     colorscale: 'Reds', // escala, la podemos cambiar 
                     colorbar: {
-                        title: 'Consumo Relativo de Energía (Tcal/persona)',
-                    }
+                        title: 'Consumo Relativo<br>de Energía (Tcal/persona)',
+                    },
+                    hoverinfo: 'none'
                 };
 
                 Plotly.newPlot('mapa', [geoData], layout, config);
