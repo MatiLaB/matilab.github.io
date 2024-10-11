@@ -53,18 +53,20 @@ fetch(consumo_relativo)
 
         // acá esta el layout para que se centre el mapa en Chile
         const layout = {
-            title: { text: 'Consumo de energía por región en Chile (2020)', x: 0.5, },
+            title: { text: 'Consumo de energía per cápita por región en Chile (2020)', x: 0.5, },
             geo: {
                 scope: 'chile',
                 resolution: 50, // cambiando esto los bordes están mejor o peor definidos
                 lonaxis: { range: [-80, -65] },
                 lataxis: { range: [-60, -17] },
                 landcolor: 'white',
-                showcountries: true,
+                showcountries: false,
                 countrycolor: "Black",
+                visible: false
             },
             dragmode: false,
-            staticPlot: true
+            staticPlot: true,
+            annotations: []
         };
 
         // configuración de plotly
@@ -87,7 +89,11 @@ fetch(consumo_relativo)
                     //hoverinfo: 'text+z',
                     colorscale: 'Reds', // escala, la podemos cambiar 
                     colorbar: {
-                        title: 'Consumo Relativo<br>de Energía (Tcal/persona)',
+                        title: 'Consumo per cápita<br>de Energía (kcal/persona)<br>ㅤ',
+                        titlefont: {
+                            size: 14
+                        },
+                        titleside: 'top',
                     },
                     hoverinfo: 'none'
                 };
