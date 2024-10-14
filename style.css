@@ -7,7 +7,6 @@ h2 {
     text-align: center;
     position: relative;
     z-index: 10;
-    /* Margin based on percentage */
 }
 
 #mapa {
