@@ -53,7 +53,6 @@ fetch(consumo_relativo)
 
         // acá esta el layout para que se centre el mapa en Chile
         const layout = {
-            title: { text: 'Consumo de energía per cápita por región en Chile (2020)', x: 0.5, },
             geo: {
                 scope: 'chile',
                 resolution: 50, // cambiando esto los bordes están mejor o peor definidos
@@ -91,9 +90,11 @@ fetch(consumo_relativo)
                     colorbar: {
                         title: 'Consumo per cápita<br>de Energía (kcal/persona)<br>ㅤ',
                         titlefont: {
-                            size: 14
+                            size: 14,
                         },
                         titleside: 'top',
+                        len: 0.6,
+                        x: 0.6,
                     },
                     hoverinfo: 'none'
                 };
