@@ -1,31 +1,43 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 h2 {
     text-align: center;
     position: relative;
     z-index: 10;
-    margin-bottom: 80px;
+    /* Margin based on percentage */
 }
 
 #mapa {
     width: 100%;
-    height: 800px;
+    height: 60vh;
     z-index: 1;
-    margin-top: -110px;
-    margin-left: 140px;
+    margin-top: -8%;
+    margin-left: 10%;
 }
 
 #contexto {
     position: absolute;
     pointer-events: none;
-    top: -83px;
-    left: 50px;
+    top: -12.5%;
+    left: 4%;
     transition: 500ms ease all;
 }
 
-#contenido {
+.contenido {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     margin: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.estática {
+    max-width: 100%;
+    height: auto;
 }
