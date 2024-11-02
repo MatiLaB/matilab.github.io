@@ -13,49 +13,25 @@ fetch(consumo_relativo)
         const consumo_regiones = rows.slice(1).map(row => parseFloat(row[3].replace(',', '.')));
         console.log(consumo_regiones);
 
+        // crear el array de información de las regiones
+        const informacion_regiones = nombres_regiones.map((nombre, index) => {
+            return {
+                id: nombre,
+                info: `Consumo: ${consumo_regiones[index].toLocaleString()} kcal/persona.`,
+                extrainfo: "lorem ipsum",
+                iconRoute: "bitmap.png"
+            };
+        });
+        
         // Máximo entre los datos para normalizar
         const max = Math.max(...consumo_regiones);
 
-        // acá esta el layout de puntitos por cada región
-        /*
-        const regiones = [{
-            type: 'scattergeo',
-            mode: 'markers',
-            // coords de las regiones
-            lon: [-70.3080, -70.1524, -70.3954, -70.3322,
-            -71.33947, -71.6197, -70.6483, -71.12452,
-            -71.6655, -73.0630, -71.95, -72.66, 73.2416,
-            -72.9366, -72.0661, -70.9225],
-            lat: [-18.4783, -20.2141, -23.65236, -27.3666,
-            -29.95332, -33.0461, -33.4569, -34.3719,
-            -35.42694, -36.7727, -36.6166, -38.9, -39.8083,
-            -41.47166, -45.57, -53.1625],
-            text: columna0,
-            hoverinfo: 'text',
-            marker: {
-                // se puede hacer una escala de colores con alguno 
-                // de los dos csv de datos
-                color: ['green', 'green', 'green',
-                    'green', 'green', 'green',
-                    'green', 'green', 'green',
-                    'green', 'green', 'green',
-                    'green', 'green', 'green',
-                    'green'
-                ],
-                size: circleSize // toma el tamaño dado los datos de un csv
-                // size: [10, 20, 10, 10,
-                //     10, 10, 10, 10,
-                //     10, 10, 10, 10,
-                //     10, 10, 10, 10],
-            }
-        }];
-        */
 
         // acá esta el layout para que se centre el mapa en Chile
         const layout = {
             geo: {
                 scope: 'chile',
-                resolution: 50, // cambiando esto los bordes están mejor o peor definidos
+                resolution: 50,
                 lonaxis: { range: [-80, -65] },
                 lataxis: { range: [-60, -17] },
                 landcolor: 'white',
@@ -79,7 +55,7 @@ fetch(consumo_relativo)
             .then(geojson => {
 
                 const geoData = {
-                    type: 'choropleth', // si se saca esto se muestran los ejes de latitudes y longitudes
+                    type: 'choropleth',
                     geojson: geojson,
                     locations: nombres_regiones,
                     z: consumo_regiones,
@@ -100,6 +76,44 @@ fetch(consumo_relativo)
                 };
 
                 Plotly.newPlot('mapa', [geoData], layout, config);
-            });
 
+                // evento de click en región
+                const audio = new Audio('sound.mp3');
+
+                document.getElementById('mapa').on('plotly_click', function(data) {
+                    const consumo = data.points[0].z; // consumo por región
+                    const volumen = Math.ceil(consumo / 10000000) / 10; // modificar su volumen dado consumo
+
+                    audio.volume = volumen;
+                    audio.currentTime = 0; // reinicia cualquier audio que esté sonando
+                    audio.play();
+                });
+
+                // acá se define la información que se quiere que muestre cada región
+                informacion_regiones[2].extrainfo = "La región de Antofagasta tiene el mayor consumo per cápita, ya que es el centro de la industria minera en el país y posee una baja densidad poblacional";
+                informacion_regiones[6].extrainfo = "La región Metropolitana, pese a que posee el mayor consumo de energía absoluto, también concentra la mayor cantidad de población, por lo que tiene el segundo menor consumo per cápita.";
+                informacion_regiones[15].extrainfo = "La región de Magallanes y Antártica Chilena tiene el segundo mayor consumo per cápita a causa de las actividades de extracción de gas natural y su baja densidad poblacional.";
+                
+                informacion_regiones[2].iconRoute = "mineria.png"
+                informacion_regiones[6].iconRoute = "mapa.png"
+
+                // aquí va el evento de hover para mostrar la información
+                document.getElementById('mapa').on('plotly_hover', function(data) {
+                    const regionId = data.points[0].location;
+                    const regionInfo = informacion_regiones.find(region => region.id === regionId);
+
+                    if (regionInfo) {
+                        document.getElementById('region-name').innerText = regionInfo.id;
+                        document.getElementById('region-info').innerText = regionInfo.info;
+                        document.getElementById('extra-info').innerText = regionInfo.extrainfo;
+                        document.getElementById('region-icon').src = regionInfo.iconRoute;
+                        document.getElementById('info-box').style.display = 'block';
+                    }
+                });
+
+                // ocultar el bloque de información cuando se saca el mouse
+                document.getElementById('mapa').on('plotly_unhover', function(data) {
+                    document.getElementById('info-box').style.display = 'none';
+                });
+            });
     });
