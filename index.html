@@ -21,7 +21,8 @@
 
     <div class="contenido">
         <h2>Consumo de energía per cápita por región en Chile (2020)</h2>
-        <div id="mapa" style="width: 100%; height: 800px;"></div>
+        <div id="mapa"></div>
+        <img id="contexto" src="bitmap.png" />
 
         <!-- Esto es para que aparezca el "hover" creado por nosotros al pasar el mouse -->
         <div id="info-box" style="
@@ -38,12 +39,12 @@
             <h4 id="region-name"></h4>
             <p id="region-info"></p>
             <p id="extra-info"></p>
-            <img id="region-icon" style="width: 50px; height: 50px;"/>
+            <img id="region-icon" style="width: 50px; height: 50px;" />
         </div>
 
         <script src="plotly.js"></script>
 
-         <!-- Esto se va a mostrar dentro del nuevo Hover -->
+        <!-- Esto se va a mostrar dentro del nuevo Hover -->
         <!-- <img id="contexto" src="bitmap.png" /> -->
 
         <!-- Esto es el mapa + texto como png, no se usará de ahora en adelante -->

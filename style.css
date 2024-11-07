@@ -5,30 +5,25 @@ h2 {
 }
 
 #mapa {
+    position: absolute;
     width: 100%;
-    height: 60vh;
-    z-index: 1;
-    margin-top: -8%;
-    margin-left: 10%;
+    height: 100%;
+    bottom: 5%;
 }
 
 #contexto {
     position: absolute;
     pointer-events: none;
-    top: -12.5%;
-    left: 4%;
     transition: 500ms ease all;
+    z-index: 99999999;
+    position: absolute;
+    width: 70%;
+    right: 32%;
+    bottom: -10%;
 }
 
-.contenido {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    position: relative;
-    z-index: 10;
+#mapa:hover+#contexto {
+    opacity: 0;
 }
 
 .estática {
