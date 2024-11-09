@@ -19,7 +19,6 @@ fetch(consumo_relativo)
                 id: nombre,
                 info: `Consumo: ${consumo_regiones[index].toLocaleString()} kcal/persona.`,
                 extrainfo: "lorem ipsum",
-                iconRoute: "bitmap.png"
             };
         });
         
