@@ -14,7 +14,7 @@ h2 {
 #contexto {
     position: absolute;
     pointer-events: none;
-    transition: 500ms ease all;
+    transition: opacity 0.5s ease;
     z-index: 99999999;
     position: absolute;
     width: 70%;
@@ -22,11 +22,45 @@ h2 {
     bottom: -10%;
 }
 
-#mapa:hover+#contexto {
+#contexto.hidden {
     opacity: 0;
+    transform: scale(0.9);
 }
 
 .estática {
     max-width: 55%;
     height: auto;
+}
+
+#info-box.visible {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    #contexto {
+        width: 70vw;
+        right: 15vw;
+        bottom: 10vh;
+    }
+
+    #info-box {
+        left: 5vw;
+        top: 10vh;
+        width: 80vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #contexto {
+        width: 80vw;
+        right: 10vw;
+        bottom: 15vh;
+    }
+
+    #info-box {
+        left: 5vw;
+        top: 5vh;
+        width: 90vw;
+    }
 }

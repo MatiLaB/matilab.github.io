@@ -125,12 +125,17 @@ fetch(consumo_relativo)
                         'rgb(205, 71, 59)'     // Magallanes
                     ];
 
+                    document.getElementById('contexto').style.opacity = 0;
+
                     if (regionInfo) {
                         document.getElementById('region-name').innerText = regionInfo.id;
                         document.getElementById('region-info').innerText = regionInfo.info;
                         document.getElementById('extra-info').innerText = regionInfo.extrainfo;
                         // document.getElementById('region-icon').src = regionInfo.iconRoute;
                         document.getElementById('info-box').style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById('info-box').classList.add('visible');
+                        }, 1000);
 
                         // Calcular y establecer el ancho de la barra de consumo
                         //const consumo = consumo_regiones[regionIndex];
@@ -163,7 +168,8 @@ fetch(consumo_relativo)
                 // ocultar el bloque de información cuando se saca el mouse
                 document.getElementById('mapa').on('plotly_unhover', function (data) {
                     document.getElementById('info-box').style.display = 'none';
-
+                    document.getElementById('info-box').classList.remove('visible');
+                    document.getElementById('contexto').style.opacity = 1;
                     // reiniciar audio
                     clearInterval(audioInterval);
                     audio.pause();
