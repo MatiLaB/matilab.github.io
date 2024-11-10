@@ -83,11 +83,11 @@ fetch(consumo_relativo)
                 // acá se define la información que se quiere que muestre cada región
                 informacion_regiones[0].extrainfo = "La región de Arica y Parinacota tiene 261.779 habitantes"
                 informacion_regiones[1].extrainfo = "La región de Tarapaca tiene 406.287 habitantes"
-                informacion_regiones[2].extrainfo = "La región de Antofagasta tiene el mayor consumo per cápita, ya que es el centro de la industria minera en el país y posee una baja densidad poblacional con 718.232 habitantes en 126.049 km. cuadrados";
+                informacion_regiones[2].extrainfo = "La región de Antofagasta tiene 718.232 habitantes";
                 informacion_regiones[3].extrainfo = "La región de Atacama tiene 319.992 habitantes"
                 informacion_regiones[4].extrainfo = "La región de Coquimbo tiene 879.267 habitantes"
                 informacion_regiones[5].extrainfo = "La región de Valparaíso tiene 2.010.849 de habitantes"
-                informacion_regiones[6].extrainfo = "La región Metropolitana, pese a que posee el mayor consumo de energía absoluto, también concentra la mayor cantidad de población con 8.420.729 de habitantes, por lo que tiene el segundo menor consumo per cápita.";
+                informacion_regiones[6].extrainfo = "La región Metropolitana tiene 8.420.729 de habitantes";
                 informacion_regiones[7].extrainfo = "La región de O'higgins tiene 1.017.701 de habitantes"
                 informacion_regiones[8].extrainfo = "La región del Maule tiene 1.162.641 de habitantes"
                 informacion_regiones[9].extrainfo = "La región del Biobio tiene 1.681.430 de habitantes"
@@ -96,7 +96,7 @@ fetch(consumo_relativo)
                 informacion_regiones[12].extrainfo = "La región de Los Ríos tiene 411.205 habitantes"
                 informacion_regiones[13].extrainfo = "La región de Los Lagos tiene 907.429 habitantes"
                 informacion_regiones[14].extrainfo = "La región de Aysén tiene 108.306 habitantes"
-                informacion_regiones[15].extrainfo = "La región de Magallanes y Antártica Chilena tiene el segundo mayor consumo per cápita a causa de las actividades de extracción de gas natural y su baja densidad poblacional, con 183.235 habitantes en 132.297 km. cuadrados.";
+                informacion_regiones[15].extrainfo = "La región de Magallanes y Antártica Chilena tiene 183.235 habitantes";
 
 
                 // aquí va el evento de hover para mostrar la información
