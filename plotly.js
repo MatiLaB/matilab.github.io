@@ -81,22 +81,23 @@ fetch(consumo_relativo)
                 let audioInterval;
 
                 // acá se define la información que se quiere que muestre cada región
-                informacion_regiones[0].extrainfo = "La región de Arica y Parinacota tiene 261.779 habitantes"
-                informacion_regiones[1].extrainfo = "La región de Tarapaca tiene 406.287 habitantes"
-                informacion_regiones[2].extrainfo = "La región de Antofagasta tiene 718.232 habitantes";
-                informacion_regiones[3].extrainfo = "La región de Atacama tiene 319.992 habitantes"
-                informacion_regiones[4].extrainfo = "La región de Coquimbo tiene 879.267 habitantes"
-                informacion_regiones[5].extrainfo = "La región de Valparaíso tiene 2.010.849 de habitantes"
-                informacion_regiones[6].extrainfo = "La región Metropolitana tiene 8.420.729 de habitantes";
-                informacion_regiones[7].extrainfo = "La región de O'higgins tiene 1.017.701 de habitantes"
-                informacion_regiones[8].extrainfo = "La región del Maule tiene 1.162.641 de habitantes"
-                informacion_regiones[9].extrainfo = "La región del Biobio tiene 1.681.430 de habitantes"
-                informacion_regiones[10].extrainfo = "La región de Ñuble tiene 519.437 habitantes"
-                informacion_regiones[11].extrainfo = "La región de La Araucanía tiene 1.028.201 de habitantes"
-                informacion_regiones[12].extrainfo = "La región de Los Ríos tiene 411.205 habitantes"
-                informacion_regiones[13].extrainfo = "La región de Los Lagos tiene 907.429 habitantes"
-                informacion_regiones[14].extrainfo = "La región de Aysén tiene 108.306 habitantes"
-                informacion_regiones[15].extrainfo = "La región de Magallanes y Antártica Chilena tiene 183.235 habitantes";
+                informacion_regiones[0].extrainfo = "Población: 261.779 habitantes."; // Arica 
+                informacion_regiones[1].extrainfo = "Población: 406.287 habitantes."; // Tarapacá
+                informacion_regiones[2].extrainfo = "Población: 718.232 habitantes."; // Antofagasta
+                informacion_regiones[3].extrainfo = "Población: 319.992 habitantes."; // Atacama
+                informacion_regiones[4].extrainfo = "Población: 879.267 habitantes."; // Coquimbo
+                informacion_regiones[5].extrainfo = "Población: 2.010.849 habitantes."; // Valparaíso
+                informacion_regiones[6].extrainfo = "Población: 8.420.729 habitantes."; // Región Metropolitana
+                informacion_regiones[7].extrainfo = "Población: 1.017.701 habitantes."; // O'Higgins
+                informacion_regiones[8].extrainfo = "Población: 1.162.641 habitantes."; // Maule
+                informacion_regiones[9].extrainfo = "Población: 1.681.430 habitantes."; // Biobío
+                informacion_regiones[10].extrainfo = "Población: 519.437 habitantes."; // Ñuble
+                informacion_regiones[11].extrainfo = "Población: 1.028.201 habitantes."; // La Araucanía
+                informacion_regiones[12].extrainfo = "Población: 411.205 habitantes."; // Los Ríos
+                informacion_regiones[13].extrainfo = "Población: 907.429 habitantes."; // Los Lagos
+                informacion_regiones[14].extrainfo = "Población: 108.306 habitantes."; // Aysén
+                informacion_regiones[15].extrainfo = "Población: 183.235 habitantes."; // Magallanes y Antártica Chilena
+
 
 
                 // aquí va el evento de hover para mostrar la información
