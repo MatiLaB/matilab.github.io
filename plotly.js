@@ -21,7 +21,7 @@ fetch(consumo_relativo)
                 extrainfo: "lorem ipsum",
             };
         });
-        
+
         // Máximo entre los datos para normalizar
         const max = Math.max(...consumo_regiones);
 
@@ -76,17 +76,9 @@ fetch(consumo_relativo)
 
                 Plotly.newPlot('mapa', [geoData], layout, config);
 
+                // Instanciar el objeto de audio
                 const audio = new Audio('sound.mp3');
-
-                // evento de click en región
-                // document.getElementById('mapa').on('plotly_click', function(data) {
-                //     const consumo = data.points[0].z; // consumo por región
-                //     const volumen = Math.ceil(consumo / 10000000) / 10; // modificar su volumen dado consumo
-
-                //     audio.volume = volumen;
-                //     audio.currentTime = 0; // reinicia cualquier audio que esté sonando
-                //     audio.play();
-                // });
+                let audioInterval;
 
                 // acá se define la información que se quiere que muestre cada región
                 informacion_regiones[0].extrainfo = "La región de Arica y Parinacota tiene 261.779 habitantes"
@@ -105,18 +97,33 @@ fetch(consumo_relativo)
                 informacion_regiones[13].extrainfo = "La región de Los Lagos tiene 907.429 habitantes"
                 informacion_regiones[14].extrainfo = "La región de Aysén tiene 108.306 habitantes"
                 informacion_regiones[15].extrainfo = "La región de Magallanes y Antártica Chilena tiene el segundo mayor consumo per cápita a causa de las actividades de extracción de gas natural y su baja densidad poblacional, con 183.235 habitantes en 132.297 km. cuadrados.";
-                
+
 
                 // aquí va el evento de hover para mostrar la información
-                document.getElementById('mapa').on('plotly_hover', function(data) {
+                document.getElementById('mapa').on('plotly_hover', function (data) {
                     const consumo = data.points[0].z; // consumo por región
-                    const volumen = Math.ceil(consumo / 10000000) / 10; // modificar su volumen dado consumo
-
-                    audio.volume = volumen;
-                    audio.play();
 
                     const regionId = data.points[0].location;
                     const regionInfo = informacion_regiones.find(region => region.id === regionId);
+
+                    const coloresRegiones = [
+                        'rgb(220, 220, 220)',  // Arica y Parinacota
+                        'rgb(245, 187, 145)',  // Tarapacá
+                        'rgb(179, 46, 37)',    // Antofagasta
+                        'rgb(233, 134, 91)',   // Atacama
+                        'rgb(227, 214, 206)',  // Coquimbo
+                        'rgb(230, 211, 197)',  // Valparaíso
+                        'rgb(220, 220, 219)',  // Metropolitana
+                        'rgb(228, 212, 200)',  // O'Higgins
+                        'rgb(233, 208, 190)',  // Maule
+                        'rgb(228, 212, 199)',  // Biobío
+                        'rgb(245, 183, 139)',  // Ñuble
+                        'rgb(227, 213, 203)',  // La Araucanía
+                        'rgb(243, 197, 162)',  // Los Ríos
+                        'rgb(245, 194, 156)',  // Los Lagos
+                        'rgb(245, 190, 149)',  // Aysén
+                        'rgb(205, 71, 59)'     // Magallanes
+                    ];
 
                     if (regionInfo) {
                         document.getElementById('region-name').innerText = regionInfo.id;
@@ -129,15 +136,36 @@ fetch(consumo_relativo)
                         //const consumo = consumo_regiones[regionIndex];
                         const widthPercentage = (consumo / max) * 100;
                         document.getElementById('consumption-bar').style.width = widthPercentage + '%';
+
+                        const regionIndex = nombres_regiones.indexOf(regionId);
+                        // Asignar color específico en el orden de colores definido
+                        const regionColor = coloresRegiones[regionIndex];
+                        document.getElementById('consumption-bar').style.backgroundColor = regionColor;
                     }
+
+                    // Calcular el intervalo de repetición del audio basado en el consumo
+                    const minInterval = 500;  // Tiempo mínimo en ms entre repeticiones
+                    const maxInterval = 3000; // Tiempo máximo en ms entre repeticiones
+                    const interval = maxInterval - (consumo / max) * (maxInterval - minInterval);
+
+                    // Limpiar cualquier intervalo anterior para evitar superposición de audios
+                    clearInterval(audioInterval);
+
+                    // Iniciar el audio a intervalos específicos
+                    audioInterval = setInterval(() => {
+                        audio.currentTime = 0;
+                        audio.volume = 0.2;
+                        audio.play();
+                    }, interval);
 
                 });
 
                 // ocultar el bloque de información cuando se saca el mouse
-                document.getElementById('mapa').on('plotly_unhover', function(data) {
+                document.getElementById('mapa').on('plotly_unhover', function (data) {
                     document.getElementById('info-box').style.display = 'none';
 
                     // reiniciar audio
+                    clearInterval(audioInterval);
                     audio.pause();
                     audio.currentTime = 0;
                 });

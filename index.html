@@ -14,22 +14,28 @@
         body {
             font-family: 'Lagu Sans', sans-serif;
         }
+
         #consumption-bar-container {
-            width: 100%;         /* Anchura máxima del contenedor */
-            background-color: #ddd;
-            height: 20px;        /* Altura de la barra */
+            width: 100%;
+            /* Anchura máxima del contenedor */
+            background-color: white;
+            height: 20px;
+            /* Altura de la barra */
             margin-top: 10px;
             border-radius: 5px;
             overflow: hidden;
         }
 
         #consumption-bar {
-            height: 100%;        /* La barra siempre tiene la misma altura que el contenedor */
-            background-color: #ff6347; /* Color de la barra, puedes cambiarlo a lo que prefieras */
-            width: 0%;           /* El ancho se ajustará dinámicamente */
-            transition: width 0.3s; /* Animación suave para el cambio de ancho */
+            height: 100%;
+            /* La barra siempre tiene la misma altura que el contenedor */
+            background-color: #ccc;
+            /* Color de la barra, puedes cambiarlo a lo que prefieras */
+            width: 0%;
+            /* El ancho se ajustará dinámicamente */
+            transition: width 0.3s;
+            /* Animación suave para el cambio de ancho */
         }
-
     </style>
 </head>
 
@@ -59,20 +65,20 @@
             <!-- <img id="region-icon" style="width: 50px; height: 50px;"/> -->
             <div id="consumption-bar-container">
                 <div id="consumption-bar"></div>
+            </div>
+
+            <script src="plotly.js"></script>
+
+            <!-- Esto se va a mostrar dentro del nuevo Hover -->
+            <!-- <img id="contexto" src="bitmap.png" /> -->
+
+            <!-- Esto es el mapa + texto como png, no se usará de ahora en adelante -->
+            <!-- <img class="estática" src="mapa.png" /> -->
         </div>
 
-        <script src="plotly.js"></script>
-
-        <!-- Esto se va a mostrar dentro del nuevo Hover -->
-        <!-- <img id="contexto" src="bitmap.png" /> -->
-
-        <!-- Esto es el mapa + texto como png, no se usará de ahora en adelante -->
-        <!-- <img class="estática" src="mapa.png" /> -->
-    </div>
-
-    <footer>
-        <p> Fuentes: Instituto Nacional de Estadísticas y Ministerio de Energía</p>
-    </footer>
+        <footer>
+            <p> Fuentes: Instituto Nacional de Estadísticas y Ministerio de Energía</p>
+        </footer>
 
 </body>
 
