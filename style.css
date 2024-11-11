@@ -156,12 +156,12 @@ h2 {
         margin-left: 31vh;
         height: 95%;
         width: 95%;
-        margin-top: -8vh;
+        margin-top: -9vh;
     }
 
     #info-box {
-        left: 55vw;
-        top: 5vh;
+        left: 65vw;
+        top: 6vh;
         width: 90vw;
     }
 }
