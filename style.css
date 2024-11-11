@@ -12,8 +12,8 @@ h2 {
 
 #mapa {
     position: relative;
-    margin-top: -6%;
-    margin-left: 12%;
+    margin-top: -10vh;
+    margin-left: 24vh;
     width: 100%;
     height: 100%;
 }
@@ -23,7 +23,7 @@ h2 {
     top: 0;
     left: 0;
     margin-top: -13vh;
-    margin-left: 9vh;
+    margin-left: 12vh;
     width: 100%;
     height: 70vh;
     pointer-events: none;
