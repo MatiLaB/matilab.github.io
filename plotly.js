@@ -141,6 +141,10 @@ fetch(consumo_relativo)
                         document.getElementById('consumption-bar').style.backgroundColor = regionColor;
                     }
 
+                    audio.currentTime = 0;  // Asegurarse de que empieza desde el inicio
+                    audio.volume = 0.2;     // Ajustar el volumen (si es necesario)
+                    audio.play();
+
                     // Calcular el intervalo de repetición del audio basado en el consumo
                     const minInterval = 500;  // Tiempo mínimo en ms entre repeticiones
                     const maxInterval = 3000; // Tiempo máximo en ms entre repeticiones
@@ -152,7 +156,6 @@ fetch(consumo_relativo)
                     // Iniciar el audio a intervalos específicos
                     audioInterval = setInterval(() => {
                         audio.currentTime = 0;
-                        audio.volume = 0.2;
                         audio.play();
                     }, interval);
 
