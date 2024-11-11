@@ -153,13 +153,13 @@ h2 {
     }
 
     #contexto {
-        margin-left: 15.5vw;
+        margin-left: 15vw;
         height: 95%;
         width: 95%;
-        margin-top: -8vh;
+        margin-top: -10vh;
     }
 
-    #info-box.visible {
+    #info-box {
         left: 35vw;
         top: 7vh;
         width: 90vw;
