@@ -20,15 +20,15 @@ h2 {
 
 #contexto {
     position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: -12.5vh;
-    margin-left: 12vh;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-51%, -56%);
+    width: 80%;
     height: 70vh;
     pointer-events: none;
     z-index: 99999999;
 }
+
 
 #contexto.hidden {
     opacity: 0;
