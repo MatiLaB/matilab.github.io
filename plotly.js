@@ -61,17 +61,9 @@ fetch(consumo_relativo)
                     featureidkey: 'properties.Region',
                     //text: nombres_regiones, // Agregar esto para mostrar el nombre completo en el hover
                     //hoverinfo: 'text+z',
-                    colorscale: 'Reds', // escala, la podemos cambiar 
-                    colorbar: {
-                        title: 'Consumo per cápita<br>de Energía (kcal/persona)<br>ㅤ',
-                        titlefont: {
-                            size: 14,
-                        },
-                        titleside: 'top',
-                        len: 0.6,
-                        x: 0.6,
-                    },
-                    hoverinfo: 'none'
+                    colorscale: 'Reds', // escala, la podemos cambiar
+                    showscale: false,
+                    hoverinfo: 'none',
                 };
 
                 Plotly.newPlot('mapa', [geoData], layout, config);
