@@ -217,7 +217,7 @@ h2 {
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1440px) {
     #mapa {
         margin-top: -13vh;
         margin-left: 14vw;
