@@ -242,3 +242,51 @@ h2 {
         width: 90vw;
     }
 }
+
+@media (min-width: 1280px) {
+    #mapa {
+        margin-top: -13vh;
+        margin-left: 14vw;
+        height: 100vh;
+    }
+
+    #contexto {
+        margin-left: 21vw;
+        height: 90%;
+        margin-top: -29vh;
+    }
+
+    img {
+        width: 775px;
+    }
+
+    #info-box {
+        left: 18vw;
+        top: 7vh;
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1920px) {
+    #mapa {
+        margin-top: -13vh;
+        margin-left: 14vw;
+        height: 100vh;
+    }
+
+    #contexto {
+        margin-left: 17vw;
+        height: 90%;
+        margin-top: -31vh;
+    }
+
+    img {
+        width: 1280px;
+    }
+
+    #info-box {
+        left: 18vw;
+        top: 7vh;
+        width: 90vw;
+    }
+}
