@@ -6,29 +6,33 @@ h2 {
 
 #map-container {
     position: relative;
-    width: 100%;
-    height: 100vh;
+    width: 1440px;
+    height: 812px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #mapa {
     position: relative;
-    margin-top: -9vh;
-    margin-left: 24vh;
+    margin-top: -15vh;
+    margin-left: 41vh;
     width: 100%;
     height: 100%;
 }
 
 #contexto {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-51%, -56%);
-    width: 80%;
+    top: 0;
+    left: 0;
+    margin-top: -20vh;
+    margin-left: 10vh;
+    width: 100%;
     height: 70vh;
     pointer-events: none;
     z-index: 99999999;
 }
-
 
 #contexto.hidden {
     opacity: 0;
@@ -86,207 +90,9 @@ h2 {
     /* 60M */
 }
 
-/* Media Queries */
 @media (max-width: 1024px) {
-
-    #mapa {
-        margin-left: 8%;
-        margin-top: -5%;
-    }
-
-    #contexto {
-        margin-top: -10vh;
-        margin-left: 5vh;
-        width: 80%;
-        height: 60vh;
-    }
-}
-
-@media (max-width: 768px) {
-
-    #mapa {
-        margin-left: 5%;
-        margin-top: -3%;
-    }
-
-    #contexto {
-        margin-top: -8vh;
-        margin-left: 3vh;
-        width: 85%;
-        height: 55vh;
-    }
-
-    #info-box.visible {
-        left: 5vw;
-        top: 10vh;
-        width: 80vw;
-    }
-}
-
-@media (max-width: 480px) {
-
-    #mapa {
-        margin-left: 3%;
-        margin-top: -2%;
-    }
-
-    #contexto {
-        margin-top: -5vh;
-        margin-left: 2vh;
-        width: 90%;
-        height: 50vh;
-    }
-
-    #info-box.visible {
-        left: 5vw;
-        top: 5vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1900px) {
-    #mapa {
-        margin-top: -6vh;
-        margin-left: 17vh;
-        height: 90vh;
-    }
-
-    #contexto {
-        margin-left: 15vw;
-        height: 95%;
-        width: 95%;
-        margin-top: -10vh;
-    }
-
-    #info-box {
-        left: 35vw;
-        top: 7vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1080px) {
-    #mapa {
-        margin-top: -12vh;
-        margin-left: 14vw;
-        height: 100vh;
-    }
-
-    #contexto {
-        margin-left: 10vw;
-        height: 10%;
-        margin-top: -30vh;
-    }
-
-    img {
-        margin-left: 27vh;
-        width: 56%;
-        margin-top: 22vh;
-    }
-
-    #info-box {
-        left: 18vw;
-        top: 7vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1300px) {
-    #mapa {
-        margin-top: -13vh;
-        margin-left: 14vw;
-        height: 100vh;
-    }
-
-    #contexto {
-        margin-left: 8vw;
-        height: 90%;
-        margin-top: -25vh;
-    }
-
-    img {
-        margin-left: 1vw;
-        width: 71%;
-        margin-top: 21vh;
-    }
-
-    #info-box {
-        left: 18vw;
-        top: 7vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1400px) {
-    #mapa {
-        margin-top: -13vh;
-        margin-left: 14vw;
-        height: 100vh;
-    }
-
-    #contexto {
-        margin-left: 10vw;
-        height: 90%;
-        margin-top: -30vh;
-    }
-
-    img {
-        margin-left: 12vw;
-        width: 776px;
-        margin-top: 22vh;
-    }
-
-    #info-box {
-        left: 18vw;
-        top: 7vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1280px) {
-    #mapa {
-        margin-top: -13vh;
-        margin-left: 14vw;
-        height: 100vh;
-    }
-
-    #contexto {
-        margin-left: 10vw;
-        height: 90%;
-        margin-top: -30vh;
-    }
-
-    img {
-        width: 775px;
-    }
-
-    #info-box {
-        left: 18vw;
-        top: 7vh;
-        width: 90vw;
-    }
-}
-
-@media (min-width: 1920px) {
-    #mapa {
-        margin-top: -13vh;
-        margin-left: 14vw;
-        height: 100vh;
-    }
-
-    #contexto {
-        margin-left: 6vw;
-        height: 90%;
-        margin-top: -32vh
-    }
-
-    img {
-        width: 1280px;
-    }
-
-    #info-box {
-        left: 18vw;
-        top: 7vh;
-        width: 90vw;
+    #map-container {
+        width: 100%;
+        height: auto;
     }
 }
