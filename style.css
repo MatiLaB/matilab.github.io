@@ -191,6 +191,32 @@ h2 {
     }
 }
 
+@media (min-width: 1300px) {
+    #mapa {
+        margin-top: -13vh;
+        margin-left: 14vw;
+        height: 100vh;
+    }
+
+    #contexto {
+        margin-left: 8vw;
+        height: 90%;
+        margin-top: -25vh;
+    }
+
+    img {
+        margin-left: 1vw;
+        width: 71%;
+        margin-top: 21vh;
+    }
+
+    #info-box {
+        left: 18vw;
+        top: 7vh;
+        width: 90vw;
+    }
+}
+
 @media (min-width: 1400px) {
     #mapa {
         margin-top: -13vh;
