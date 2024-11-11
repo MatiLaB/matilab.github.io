@@ -117,7 +117,7 @@ h2 {
         height: 55vh;
     }
 
-    #info-box {
+    #info-box.visible {
         left: 5vw;
         top: 10vh;
         width: 80vw;
@@ -138,7 +138,7 @@ h2 {
         height: 50vh;
     }
 
-    #info-box {
+    #info-box.visible {
         left: 5vw;
         top: 5vh;
         width: 90vw;
@@ -159,7 +159,7 @@ h2 {
         margin-top: -10vh;
     }
 
-    #info-box {
+    #info-box.visible {
         left: 35vw;
         top: 7vh;
         width: 90vw;
