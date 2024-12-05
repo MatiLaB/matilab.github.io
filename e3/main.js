@@ -476,62 +476,122 @@ fetch(consumo_relativo)
                     audio.currentTime = 0;
                 });
             });
+                let triangle = document.getElementById("triangle");
+
+                function mapValue(value, inMin, inMax, outMin, outMax) {
+                    return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+                };
+
+                // Listen for hand sensor data and map to screen coordinates
+                Protobject.onReceived((data) => {
+                    const cursorTop = mapValue(data.y, 0.2, 0.8, 0, window.innerHeight);
+                    const cursorLeft = mapValue(data.x, 0.2, 0.8, 0, window.innerWidth);
+
+                    triangle.style.top = cursorTop + 'px'; // Actualiza la posición vertical del triángulo
+                    triangle.style.left = cursorLeft + 'px'; // Actualiza la posición horizontal del triángulo
+
+                    detectHoverRegion(cursorLeft, cursorTop);
+                });
+
+                var oldRegion = "";
+                var currentRegion = "";
+
+                function detectHoverRegion(x, y) {
+                    const intervals = [
+                        { min: 0, max: 110, region: 0 }, 
+                        { min: 110, max: 130, region: 1 }, 
+                        { min: 130, max: 180, region: 2 },
+                      	{ min: 180, max: 215, region: 3 } 
+                      ];
+					console.log(x,y);
+                      for (let i = 0; i < intervals.length; i++) {
+                        if (y >= intervals[i].min && y < intervals[i].max) {
+                          currentRegion = intervals[i].region;
+                           if (currentRegion && currentRegion !== oldRegion) {
+           					 	console.log("Región seleccionada:", currentRegion); // Log the selected region
+            					displayRegionInfo(currentRegion); // Perform your action
+            					oldRegion = currentRegion; // Update the oldRegion
+                           }
+                          break;
+                        }
+                      }
+                }
+
+                function displayRegionInfo(region) {
+                    const regionInfo = informacion_regiones[region];
+                  
+                  	console.log(regionInfo);
+
+                    if (regionInfo) {
+                      
+                      	const coloresRegiones = [
+                        'rgb(220, 220, 220)',  // Arica y Parinacota
+                        'rgb(245, 187, 145)',  // Tarapacá
+                        'rgb(179, 46, 37)',    // Antofagasta
+                        'rgb(233, 134, 91)',   // Atacama
+                        'rgb(227, 214, 206)',  // Coquimbo
+                        'rgb(230, 211, 197)',  // Valparaíso
+                        'rgb(220, 220, 219)',  // Metropolitana
+                        'rgb(228, 212, 200)',  // O'Higgins
+                        'rgb(233, 208, 190)',  // Maule
+                        'rgb(228, 212, 199)',  // Biobío
+                        'rgb(245, 183, 139)',  // Ñuble
+                        'rgb(227, 213, 203)',  // La Araucanía
+                        'rgb(243, 197, 162)',  // Los Ríos
+                        'rgb(245, 194, 156)',  // Los Lagos
+                        'rgb(245, 190, 149)',  // Aysén
+                        'rgb(205, 71, 59)'     // Magallanes
+                    	];
+                      
+                      	document.getElementById('contexto').style.opacity = 0;
+                        document.getElementById('region-name').innerText = regionInfo.id;
+                        document.getElementById('region-info').innerText = regionInfo.info;
+                        document.getElementById('extra-info').innerText = regionInfo.extrainfo;
+                      
+                      	document.getElementById('info-box').style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById('info-box').classList.add('visible');
+                        }, 1000);
+
+                      	const consumo = consumo_regiones[region];
+                      	console.log(consumo);
+                        const widthPercentage = (consumo / max) * 100;
+                        document.getElementById('consumption-bar').style.width = widthPercentage + '%';
+                        // Asignar color específico en el orden de colores definido
+                        const regionColor = coloresRegiones[region];
+                      	console.log(regionColor);
+                        document.getElementById('consumption-bar').style.backgroundColor = regionColor;
+                      
+                      	const audio = new Audio('https://matilab.github.io/sound.mp3');
+                		let audioInterval;
+                      
+                   	 	audio.currentTime = 0;  // Asegurarse de que empieza desde el inicio
+                    	audio.volume = 0.2;     // Ajustar el volumen (si es necesario)
+                    	audio.play();
+
+                        // Calcular el intervalo de repetición del audio basado en el consumo
+                        const minInterval = 500;  // Tiempo mínimo en ms entre repeticiones
+                        const maxInterval = 3000; // Tiempo máximo en ms entre repeticiones
+                        const interval = maxInterval - (consumo / max) * (maxInterval - minInterval);
+
+                        // Limpiar cualquier intervalo anterior para evitar superposición de audios
+                        clearInterval(audioInterval);
+
+                        // Iniciar el audio a intervalos específicos
+                        audioInterval = setInterval(() => {
+                            audio.currentTime = 0;
+                            audio.play();
+                          	setTimeout(() => {
+        						audio.pause();
+    						}, 3000);
+                        }, interval);
+
+                        }
+                    }
+  
     });
 
-let triangle = document.getElementById("triangle");
 
-function mapValue(value, inMin, inMax, outMin, outMax) {
-    return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-};
-
-// Listen for hand sensor data and map to screen coordinates
-Protobject.onReceived((data) => {
-    const cursorTop = mapValue(data.y, 0.2, 0.8, 0, window.innerHeight);
-    const cursorLeft = mapValue(data.x, 0.2, 0.8, 0, window.innerWidth);
-
-    triangle.style.top = cursorTop + 'px'; // Actualiza la posición vertical del triángulo
-    triangle.style.left = cursorLeft + 'px'; // Actualiza la posición horizontal del triángulo
-
-    detectHoverRegion(cursorLeft, cursorTop);
-});
-
-var oldRegion = "";
-var currentRegion = "";
-
-function detectHoverRegion(x, y) {
-    var hoveredElement = document.elementFromPoint(x, y);
-
-    if (!hoveredElement) return; // Early return if no element is detected
-
-    const regionElement = hoveredElement.closest('.choroplethlocation');
-  	console.log(hoveredElement);
-    if (regionElement) {
-        const currentRegion = regionElement.getAttribute('id'); // Get the ID of the region
-
-        if (currentRegion && currentRegion !== oldRegion) {
-            console.log("Región seleccionada:", currentRegion); // Log the selected region
-            displayRegionInfo(currentRegion); // Perform your action
-            oldRegion = currentRegion; // Update the oldRegion
-        }
-    }
-}
-
-function displayRegionInfo(regionId) {
-    const regionInfo = informacion_regiones.find(region => region.id === regionId);
-
-    if (regionInfo) {
-        document.getElementById('region-name').innerText = regionInfo.id;
-        document.getElementById('region-info').innerText = regionInfo.info;
-        document.getElementById('extra-info').innerText = regionInfo.extrainfo;
-
-        const consumption = parseFloat(regionInfo.info.match(/[\d.]+/));
-        const widthPercentage = (consumption / max) * 100;
-        document.getElementById('consumption-bar').style.width = `${widthPercentage}%`;
-
-        document.getElementById('info-box').classList.add('visible');
-        document.getElementById('info-box').style.opacity = '1';
-    }
-}
 
 
 
